@@ -8,6 +8,7 @@ import App from "./containers/App";
 
 import history from "./utils/history";
 import store from "./store";
+import "./translations";
 
 ReactDOM.render(
   <Provider store={store}>

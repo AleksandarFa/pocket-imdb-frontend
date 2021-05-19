@@ -4,6 +4,7 @@ import {
   fetchAuthenticatedUser,
   fetchAuthenticatedUserSuccess,
   logoutSuccess,
+  logoutError,
   loginSuccess,
   loginError,
   setToken,
@@ -53,7 +54,7 @@ export function* register({
       username,
     });
     yield put(setToken(token));
-    yield put(registerSuccess());
+    yield put(registerSuccess(true));
     yield put(push(LOGIN));
   } catch (error) {
     yield put(registerError());
@@ -65,7 +66,7 @@ export function* logout() {
     yield put(logoutSuccess());
     yield put(removeItem("token"));
   } catch (error) {
-    //
+    yield put(logoutError());
   }
 }
 

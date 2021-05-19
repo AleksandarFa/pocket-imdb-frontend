@@ -49,15 +49,17 @@ class AuthService {
   };
 
   login = async (data) => {
-    data.username = data.email;
-    delete data.email;
+    const loginData = {
+      username: data.email,
+      password: data.password,
+    };
 
     const {
       data: { access: token },
     } = await this.httpService.request({
       url: ROUTES.LOGIN,
       method: HTTP_METHODS.POST,
-      data,
+      data: loginData,
     });
 
     this.setAuthToken(token);

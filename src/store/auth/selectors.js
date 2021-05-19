@@ -15,9 +15,13 @@ const makeSelectError = () =>
 const makeSelectToken = () =>
   createSelector(selectAuth, (substate) => substate.token);
 
+const makeSelectIsRegistered = () =>
+  createSelector(selectAuth, (substate) => substate.registerSuccess);
+
 export {
   makeSelectUser,
   makeSelectError,
   makeSelectIsAuthenticated,
+  makeSelectIsRegistered,
   makeSelectToken,
 };

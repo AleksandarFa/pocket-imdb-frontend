@@ -6,6 +6,7 @@ import {
   FETCH_AUTHENTICATED_USER_SUCCESS,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
   SET_TOKEN,
   SESSION_EXPIRED,
   FORGOT_PASSWORD_REQUEST,
@@ -68,6 +69,12 @@ export function logoutSuccess() {
   };
 }
 
+export function logoutError() {
+  return {
+    type: LOGOUT_ERROR,
+  };
+}
+
 export function setToken(token) {
   return {
     type: SET_TOKEN,
@@ -114,9 +121,10 @@ export function register({ firstName, lastName, email, password, username }) {
   };
 }
 
-export function registerSuccess() {
+export function registerSuccess(success) {
   return {
     type: REGISTER_SUCCESS,
+    success,
   };
 }
 

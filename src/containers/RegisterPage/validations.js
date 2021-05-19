@@ -1,19 +1,26 @@
 import * as Yup from "yup";
 
+import {
+  FIRST_NAME_MIN,
+  LAST_NAME_MIN,
+  USERNAME_MIN,
+  PASSWORD_MIN,
+} from "../../consts/validations";
+
 const registerSchema = Yup.object().shape({
   firstName: Yup.string()
     .required("First name is Required.")
-    .min(2, "First name is too Shor."),
+    .min(FIRST_NAME_MIN, "First name is too Shor."),
   lastName: Yup.string()
     .required("Last name is Required.")
-    .min(1, "Last name is too short."),
+    .min(LAST_NAME_MIN, "Last name is too short."),
   username: Yup.string()
     .required("Username is Required.")
-    .min(4, "Username is too short. Should be 4 charas minimum."),
+    .min(USERNAME_MIN, "Username is too short. Should be 4 charas minimum."),
   email: Yup.string().email().required("Email is required."),
   password: Yup.string()
     .required("No password provided.")
-    .min(8, "Password is too short. Should be 8 chars minimum."),
+    .min(PASSWORD_MIN, "Password is too short. Should be 8 chars minimum."),
   confirmPassword: Yup.string().oneOf(
     [Yup.ref("password"), null],
     "Passwords must match"

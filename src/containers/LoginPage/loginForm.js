@@ -1,12 +1,31 @@
 import React from "react";
 import { useFormik } from "formik";
-
 import { useDispatch } from "react-redux";
+
 import loginSchema from "./validations";
 import { login } from "../../store/auth/actions";
 
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import Cssbaseline from "@material-ui/core/Cssbaseline";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  root: {
+    width: "40%",
+    margin: "auto",
+    border: "black",
+  },
+  loginBtn: {
+    width: "50%",
+    marginTop: 10,
+  },
+});
+
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -18,43 +37,41 @@ const LoginForm = () => {
     },
   });
   return (
-    <div className="container w-50 border p-3">
+    <Typography component="div" variant="body1" className={classes.root}>
+      <Cssbaseline />
       <form onSubmit={formik.handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-          ></input>
-          {formik.errors.email ? (
-            <small className="form-text text-muted">
-              {formik.errors.email}
-            </small>
-          ) : null}
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-          ></input>
-          {formik.errors.password ? (
-            <small className="form-text text-muted">
-              {formik.errors.password}
-            </small>
-          ) : null}
-        </div>
-        <button type="submit" className="btn btn-primary">
+        <TextField
+          fullWidth
+          id="email"
+          name="email"
+          label="Email"
+          type="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email && formik.errors.email}
+          helperText={formik.touched.email && formik.errors.email}
+        />
+        <TextField
+          fullWidth
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.touched.password && formik.errors.password}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          className={classes.loginBtn}
+        >
           Sign In
-        </button>
+        </Button>
       </form>
-    </div>
+    </Typography>
   );
 };
 

@@ -1,0 +1,27 @@
+{
+    "welcome":{
+        "title":"Pocket IMDB"
+    },
+    "login":{
+        "title": "Sign in page",
+        "username":"Username:",
+        "password":"Password:",
+        "registerSuccess":"Successful registration please login."
+    },
+    "register":{
+        "title":"Sign Up page",
+        "firstName":"First name:",
+        "lastName":"Last name:",
+        "confirmPassword":"Confirm password:",
+        "email":"Email:"
+    },
+    "nav":{
+        "signIn":"Sign In",
+        "signUp":"Sign Up",
+        "welcome":"Welcome"
+    },
+    "dashboard":{
+        "title":"Dashboard",
+        "logoutBtn":"Logout"
+    }
+}
