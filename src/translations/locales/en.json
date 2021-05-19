@@ -23,7 +23,7 @@
         "welcome":"Welcome"
     },
     "dashboard":{
-        "title":"Dashboard",
+        "title":"Pocket IMDB",
         "logoutBtn":"Logout"
     }
 }
