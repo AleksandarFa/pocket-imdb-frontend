@@ -2,6 +2,8 @@ import React from "react";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 
+import { useTranslation } from "react-i18next";
+
 import loginSchema from "./validations";
 import { login } from "../../store/auth/actions";
 
@@ -24,6 +26,7 @@ const useStyles = makeStyles({
 });
 
 const LoginForm = () => {
+  const [t, i18n] = useTranslation("translation");
   const dispatch = useDispatch();
   const classes = useStyles();
   const formik = useFormik({
@@ -44,7 +47,7 @@ const LoginForm = () => {
           fullWidth
           id="email"
           name="email"
-          label="Email"
+          label={t("register.email")}
           type="email"
           value={formik.values.email}
           onChange={formik.handleChange}
@@ -55,7 +58,7 @@ const LoginForm = () => {
           fullWidth
           id="password"
           name="password"
-          label="Password"
+          label={t("login.password")}
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
@@ -68,7 +71,7 @@ const LoginForm = () => {
           variant="contained"
           className={classes.loginBtn}
         >
-          Sign In
+          {t("login.btnLogin")}
         </Button>
       </form>
     </Typography>

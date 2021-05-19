@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
+import { useTranslation } from "react-i18next";
 
 import { register } from "../../store/auth/actions";
 import registerSchema from "./validations";
@@ -25,6 +26,7 @@ const useStyles = makeStyles({
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const [t, i18n] = useTranslation("translation");
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
@@ -48,7 +50,7 @@ const RegisterForm = () => {
           fullWidth
           id="firstName"
           name="firstName"
-          label="First Name"
+          label={t("register.firstName")}
           type="text"
           value={formik.values.firstName}
           onChange={formik.handleChange}
@@ -59,7 +61,7 @@ const RegisterForm = () => {
           fullWidth
           id="lastName"
           name="lastName"
-          label="Last Name"
+          label={t("register.lastName")}
           type="text"
           value={formik.values.lastName}
           onChange={formik.handleChange}
@@ -70,7 +72,7 @@ const RegisterForm = () => {
           fullWidth
           id="username"
           name="username"
-          label="Username"
+          label={t("login.username")}
           type="text"
           value={formik.values.username}
           onChange={formik.handleChange}
@@ -81,7 +83,7 @@ const RegisterForm = () => {
           fullWidth
           id="email"
           name="email"
-          label="Email"
+          label={t("register.email")}
           type="email"
           value={formik.values.email}
           onChange={formik.handleChange}
@@ -92,7 +94,7 @@ const RegisterForm = () => {
           fullWidth
           id="password"
           name="password"
-          label="Password"
+          label={t("login.password")}
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
@@ -103,7 +105,7 @@ const RegisterForm = () => {
           fullWidth
           id="confirmPassword"
           name="confirmPassword"
-          label="Confirm Password"
+          label={t("register.confirmPassword")}
           type="password"
           value={formik.values.confirmPassword}
           onChange={formik.handleChange}
@@ -120,7 +122,7 @@ const RegisterForm = () => {
           variant="contained"
           className={classes.loginBtn}
         >
-          Sign In
+          {t("register.btnRegister")}
         </Button>
       </form>
     </Typography>

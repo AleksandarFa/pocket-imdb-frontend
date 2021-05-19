@@ -4,16 +4,18 @@
     },
     "login":{
         "title": "Sign in page",
-        "username":"Username:",
-        "password":"Password:",
-        "registerSuccess":"Successful registration please login."
+        "username":"Username",
+        "password":"Password",
+        "registerSuccess":"Successful registration please login.",
+        "btnLogin":"Login"
     },
     "register":{
         "title":"Sign Up page",
-        "firstName":"First name:",
-        "lastName":"Last name:",
+        "firstName":"First name",
+        "lastName":"Last name",
         "confirmPassword":"Confirm password:",
-        "email":"Email:"
+        "email":"Email",
+        "btnRegister":"Sign up"
     },
     "nav":{
         "signIn":"Sign In",
