@@ -6,4 +6,7 @@ const selectMovies = (state) => state.movies || initialState;
 const makeSelectAllMovies = () =>
   createSelector(selectMovies, (substate) => substate.movies);
 
-export { makeSelectAllMovies };
+const makeSelectMovie = () =>
+  createSelector(selectMovies, (substate) => substate.movie);
+
+export { makeSelectAllMovies, makeSelectMovie };

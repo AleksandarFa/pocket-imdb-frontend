@@ -32,6 +32,7 @@ const MovieList = () => {
           return (
             <MovieItem
               key={movie.id}
+              id={movie.id}
               title={movie.title}
               description={movie.description}
             />
