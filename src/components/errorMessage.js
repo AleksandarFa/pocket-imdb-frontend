@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 });
 
 const ErrorMessage = ({ error }) => {
-  let msgs = retrieveMsgs(error);
+  const msgs = retrieveMsgs(error);
   const classes = useStyles();
   return (
     <div>

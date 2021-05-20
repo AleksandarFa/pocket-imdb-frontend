@@ -3,6 +3,7 @@ import { HTTP_METHODS } from "../consts";
 
 const ROUTES = {
   ALL_MOVIES: "api/v1/movies/",
+  MOVIE: "api/v1/movies/",
 };
 
 class MovieService {
@@ -13,6 +14,16 @@ class MovieService {
   retrieveAllMovies = async () => {
     const response = await this.httpService.request({
       url: ROUTES.ALL_MOVIES,
+      method: HTTP_METHODS.GET,
+    });
+    return response.data;
+  };
+
+  retrieveMovie = async ({ id }) => {
+    const url = `${ROUTES.MOVIE}${id}`;
+
+    const response = await this.httpService.request({
+      url: url,
       method: HTTP_METHODS.GET,
     });
     return response.data;

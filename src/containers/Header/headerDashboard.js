@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { logout } from "../../store/auth/actions";
 
-import MovieList from "../Movie/movieList";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -36,7 +34,6 @@ const DashboardHeader = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <MovieList />
     </React.Fragment>
   );
 };
