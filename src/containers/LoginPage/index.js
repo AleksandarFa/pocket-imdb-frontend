@@ -1,12 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { makeSelectIsRegistered } from "../../store/auth/selectors";
+import {
+  makeSelectIsRegistered,
+  makeSelectError,
+} from "../../store/auth/selectors";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import Header from "../Header";
 import LoginForm from "./loginForm";
+import Error from "../../components/errorMessage";
 import Nav from "../Nav";
 import links from "../Nav/constants";
 
@@ -23,6 +27,7 @@ const useStyles = makeStyles({
 
 const LoginPage = () => {
   const registration = useSelector(makeSelectIsRegistered());
+  const error = useSelector(makeSelectError());
   const [t, i18n] = useTranslation("translation");
   const classes = useStyles();
   return (
@@ -32,6 +37,7 @@ const LoginPage = () => {
       {registration ? (
         <div className={classes.registration}>{t("login.registerSuccess")}</div>
       ) : null}
+      {error && <Error error={error} />}
       <LoginForm />
     </main>
   );
