@@ -128,9 +128,10 @@ export function registerSuccess(success) {
   };
 }
 
-export function registerError() {
+export function registerError(error) {
   return {
     type: REGISTER_ERROR,
+    error,
   };
 }
 

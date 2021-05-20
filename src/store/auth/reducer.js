@@ -3,6 +3,8 @@ import { getItem } from "../../utils/localStorage";
 import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
+  REGISTER_ERROR,
+  LOGIN_ERROR,
   SET_TOKEN,
   SESSION_EXPIRED,
 } from "./actionTypes";
@@ -11,6 +13,7 @@ export const initialState = {
   token: getItem("token") || null,
   user: null,
   registerSuccess: null,
+  error: null,
 };
 
 const appReducer = (state = initialState, actions) => {
@@ -34,6 +37,16 @@ const appReducer = (state = initialState, actions) => {
       return {
         ...state,
         registerSuccess: actions.success,
+      };
+    case REGISTER_ERROR:
+      return {
+        ...state,
+        error: actions.error,
+      };
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        error: actions.error,
       };
     default:
       return state;

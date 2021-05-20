@@ -34,7 +34,8 @@ export function* authorize({ email, password }) {
     yield put(setToken(token));
     yield put(push(DASHBOARD));
   } catch (error) {
-    yield put(loginError());
+    const errorData = error.response.data;
+    yield put(loginError(errorData));
   }
 }
 
@@ -53,11 +54,14 @@ export function* register({
       password,
       username,
     });
+
     yield put(setToken(token));
     yield put(registerSuccess(true));
+    yield put(registerError(null));
     yield put(push(LOGIN));
   } catch (error) {
-    yield put(registerError());
+    let errorData = error.response.data;
+    yield put(registerError(errorData));
   }
 }
 
