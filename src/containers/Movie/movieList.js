@@ -12,7 +12,7 @@ import MovieItem from "./movieListItem";
 const useStyles = makeStyles({
   list: {
     width: "60%",
-    margin: "auto",
+    margin: "20px auto",
   },
 });
 
@@ -28,7 +28,7 @@ const MovieList = () => {
   return (
     <List className={classes.list}>
       {movies &&
-        movies.map((movie) => {
+        movies.results.map((movie) => {
           return (
             <MovieItem
               key={movie.id}
