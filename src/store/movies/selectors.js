@@ -9,4 +9,15 @@ const makeSelectAllMovies = () =>
 const makeSelectMovie = () =>
   createSelector(selectMovies, (substate) => substate.movie);
 
-export { makeSelectAllMovies, makeSelectMovie };
+const makeSelectNextMovie = () =>
+  createSelector(selectMovies, (substate) => substate.next);
+
+const makeSelectPreviousMovie = () =>
+  createSelector(selectMovies, (substate) => substate.previous);
+
+export {
+  makeSelectAllMovies,
+  makeSelectMovie,
+  makeSelectNextMovie,
+  makeSelectPreviousMovie,
+};

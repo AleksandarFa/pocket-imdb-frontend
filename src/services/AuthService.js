@@ -3,7 +3,6 @@ import jwtDecode from "jwt-decode";
 import httpService from "./HttpService";
 import { HTTP_METHODS, HTTP_STATUS_CODES } from "../consts";
 import { getItem, setItem, removeItem } from "../utils/localStorage";
-import config from "../config";
 
 const ROUTES = {
   LOGIN: "/api/v1/token/",
