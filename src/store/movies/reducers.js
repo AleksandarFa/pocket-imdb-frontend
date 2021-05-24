@@ -1,6 +1,7 @@
 import {
   FETCH_ALL_MOVIES_SUCCESS,
   FETCH_SINGLE_MOVIE_SUCCESS,
+  FETCH_GENRES_SUCCESS,
   SET_NEXT_PAGE,
   SET_PREVIOUS_PAGE,
 } from "./actionTypes";
@@ -10,6 +11,7 @@ export const initialState = {
   movie: null,
   next: null,
   previous: null,
+  genres: null,
 };
 
 function movieReducer(state = initialState, actions) {
@@ -33,6 +35,11 @@ function movieReducer(state = initialState, actions) {
       return {
         ...state,
         previous: actions.previous,
+      };
+    case FETCH_GENRES_SUCCESS:
+      return {
+        ...state,
+        genres: actions.genres,
       };
     default:
       return state;

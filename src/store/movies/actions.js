@@ -4,6 +4,8 @@ import {
   FETCH_SINGLE_MOVIE_REQUEST,
   FETCH_SINGLE_MOVIE_SUCCESS,
   FETCH_PAGE_OF_MOVIES_REQUEST,
+  FETCH_GENRES_REQUEST,
+  FETCH_GENRES_SUCCESS,
   SET_NEXT_PAGE,
   SET_PREVIOUS_PAGE,
 } from "./actionTypes";
@@ -53,5 +55,19 @@ export function setPrevious(previous) {
   return {
     type: SET_PREVIOUS_PAGE,
     previous,
+  };
+}
+
+export function fetchGenresRequest(url) {
+  return {
+    type: FETCH_GENRES_REQUEST,
+    url,
+  };
+}
+
+export function fetchGenresSuccess(genres) {
+  return {
+    type: FETCH_GENRES_SUCCESS,
+    genres,
   };
 }

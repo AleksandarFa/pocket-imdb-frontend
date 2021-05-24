@@ -3,9 +3,9 @@ import { HTTP_METHODS } from "../consts";
 
 import { getItem, setItem } from "../utils/localStorage";
 
-const ROUTES = {
-  ALL_MOVIES: "api/v1/movies/",
-  MOVIE: "api/v1/movies/",
+export const ROUTES = {
+  MOVIES: "api/v1/movies/",
+  GENRES: "api/v1/genres/",
 };
 
 class MovieService {
@@ -26,7 +26,7 @@ class MovieService {
   retrieveAllMovies = async () => {
     this.setAuthToken(getItem("token"));
     const response = await this.httpService.request({
-      url: ROUTES.ALL_MOVIES,
+      url: ROUTES.MOVIES,
       method: HTTP_METHODS.GET,
     });
     return response.data;
@@ -34,7 +34,7 @@ class MovieService {
 
   retrieveMovie = async ({ id }) => {
     this.setAuthToken(getItem("token"));
-    const url = `${ROUTES.MOVIE}${id}`;
+    const url = `${ROUTES.MOVIES}${id}`;
 
     const response = await this.httpService.request({
       url: url,
