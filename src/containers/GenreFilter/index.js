@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
+import { useTranslation } from "react-i18next";
 
 import { ROUTES } from "../../services/movieService";
 import {
@@ -29,6 +30,7 @@ const GenreFilter = () => {
   const dispatch = useDispatch();
   const genres = useSelector(makeSelectGenre());
   const classes = useStyles();
+  const [t, i18n] = useTranslation("translation");
   const formik = useFormik({
     initialValues: {
       genre: "",
@@ -60,7 +62,7 @@ const GenreFilter = () => {
             ))}
         </NativeSelect>
         <Button type="submit" variant="outlined" className={classes.btn}>
-          Filter
+          {t("dashboard.filterBtn")}
         </Button>
       </form>
     </FormControl>
