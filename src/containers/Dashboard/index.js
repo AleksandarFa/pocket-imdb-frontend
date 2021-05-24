@@ -7,9 +7,16 @@ import Header from "../Header/headerDashboard";
 import MovieList from "../Movie/movieList";
 import Pagination from "../Pagination/";
 import GenreFilter from "../GenreFilter";
+import SearchBox from "../SearchBox";
 
 const useStyles = makeStyles({
-  box: {
+  box1: {
+    margin: 10,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  box2: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -22,8 +29,11 @@ const Dashboard = () => {
   return (
     <div>
       <Header />
-      <GenreFilter />
-      <Box className={classes.box}>
+      <Box className={classes.box1}>
+        <GenreFilter />
+        <SearchBox />
+      </Box>
+      <Box className={classes.box2}>
         <MovieList />
         <Pagination />
       </Box>
