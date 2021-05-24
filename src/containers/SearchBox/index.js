@@ -8,18 +8,19 @@ import TextField from "@material-ui/core/TextField";
 
 import { fetchPageOfMoviesRequest } from "../../store/movies/actions";
 import { ROUTES } from "../../services/movieService";
+import { DEBOUNCE_TIME } from "../../consts/time";
 
 const SearchBox = () => {
   const [t, i18n] = useTranslation("translation");
   const dispatch = useDispatch();
 
-  const apiCall = (querry) => {
-    const url = `${ROUTES.MOVIES}?search=${querry}`;
+  const handleSearch = (query) => {
+    const url = `${ROUTES.MOVIES}?search=${query}`;
     dispatch(fetchPageOfMoviesRequest(url));
   };
 
   const debounceSave = useCallback(
-    debounce((nextValue) => apiCall(nextValue), 750),
+    debounce((nextValue) => handleSearch(nextValue), DEBOUNCE_TIME),
     []
   );
 
