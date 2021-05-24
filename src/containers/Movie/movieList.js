@@ -28,6 +28,7 @@ const MovieList = () => {
   return (
     <List className={classes.list}>
       {movies &&
+        movies.results &&
         movies.results.map((movie) => {
           return (
             <MovieItem

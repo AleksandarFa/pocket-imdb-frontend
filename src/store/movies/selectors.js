@@ -15,9 +15,13 @@ const makeSelectNextMovie = () =>
 const makeSelectPreviousMovie = () =>
   createSelector(selectMovies, (substate) => substate.previous);
 
+const makeSelectGenre = () =>
+  createSelector(selectMovies, (substate) => substate.genres);
+
 export {
   makeSelectAllMovies,
   makeSelectMovie,
   makeSelectNextMovie,
   makeSelectPreviousMovie,
+  makeSelectGenre,
 };

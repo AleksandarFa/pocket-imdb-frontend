@@ -6,10 +6,12 @@ import {
   FETCH_ALL_MOVIES_REQUEST,
   FETCH_PAGE_OF_MOVIES_REQUEST,
   FETCH_SINGLE_MOVIE_REQUEST,
+  FETCH_GENRES_REQUEST,
 } from "./actionTypes";
 import {
   fetchMoviesSuccess,
   fetchSingleMovieSuccess,
+  fetchGenresSuccess,
   setNext,
   setPrevious,
 } from "./actions";
@@ -32,10 +34,16 @@ export function* fetchPageOfMovies(url) {
   yield put(setPrevious(response.previous));
 }
 
+export function* fetchGenres(url) {
+  const response = yield call(movieService.fetchPage, url);
+  yield put(fetchGenresSuccess(response));
+}
+
 function* movieSagas() {
   yield takeLatest(FETCH_ALL_MOVIES_REQUEST, fetchAllMovies);
   yield takeLatest(FETCH_SINGLE_MOVIE_REQUEST, fetchSingleMovie);
   yield takeLatest(FETCH_PAGE_OF_MOVIES_REQUEST, fetchPageOfMovies);
+  yield takeLatest(FETCH_GENRES_REQUEST, fetchGenres);
 }
 
 export default movieSagas;
