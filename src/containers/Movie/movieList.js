@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "../../store/movies/actions";
 import { makeSelectAllMovies } from "../../store/movies/selectors";
+import { fetchAuthenticatedUser } from "../../store/auth/actions";
 
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,6 +23,7 @@ const MovieList = () => {
 
   useEffect(() => {
     dispatch(fetchMovies());
+    dispatch(fetchAuthenticatedUser());
   }, []);
 
   return (
@@ -36,6 +37,8 @@ const MovieList = () => {
               id={movie.id}
               title={movie.title}
               description={movie.description}
+              likes={movie.num_of_likes}
+              dislikes={movie.num_of_dislikes}
             />
           );
         })}

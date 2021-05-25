@@ -2,6 +2,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 import { MOVIE } from "../../routes";
+import LikeButton from "../../components/likeButton";
 
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -10,6 +11,7 @@ import Link from "@material-ui/core/Link";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
   box: {
@@ -20,24 +22,47 @@ const useStyles = makeStyles({
   text: {
     marginLeft: 20,
   },
+  gridItem: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  number: {
+    margin: 0,
+  },
 });
 
-const MovieItem = ({ id, title, description }) => {
+const MovieItem = ({ id, title, description, likes, dislikes }) => {
   const classes = useStyles();
   const route = MOVIE.replace(":id", id);
+
   return (
     <React.Fragment>
       <ListItem alignItems="flex-start">
-        <Link component={RouterLink} to={route}>
-          <ListItemAvatar>
-            <Box className={classes.box}>Image</Box>
-          </ListItemAvatar>
-        </Link>
+        <Box>
+          <Link component={RouterLink} to={route}>
+            <ListItemAvatar>
+              <Box className={classes.box}>Image</Box>
+            </ListItemAvatar>
+          </Link>
+          <Box>
+            <Grid container className={classes.grid}>
+              <Grid item className={classes.gridItem}>
+                <LikeButton movie_id={id} likeDislike={true} />
+                <p className={classes.number}>{likes}</p>
+              </Grid>
+              <Grid item className={classes.gridItem}>
+                <LikeButton movie_id={id} likeDislike={false} />
+                <p className={classes.number}>{dislikes}</p>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
         <ListItemText
           className={classes.text}
           primary={title}
           secondary={
-            <React.Fragment>{description.slice(0, 200)}...</React.Fragment>
+            <React.Fragment>{description.slice(0, 300)}...</React.Fragment>
           }
         />
       </ListItem>

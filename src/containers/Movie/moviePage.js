@@ -9,8 +9,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Header from "../Header/headerDashboard";
 import SidePanel from "../SidePanel";
+import LikeButton from "../../components/likeButton";
 
 import { fetchSingleMovie } from "../../store/movies/actions";
+import { fetchAuthenticatedUser } from "../../store/auth/actions";
 import { makeSelectMovie } from "../../store/movies/selectors";
 import { Avatar } from "@material-ui/core";
 
@@ -44,7 +46,8 @@ const MoviePage = () => {
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
-  }, [movie]);
+    dispatch(fetchAuthenticatedUser());
+  }, []);
 
   return (
     <div>
@@ -57,6 +60,12 @@ const MoviePage = () => {
             </Typography>
             <Typography variant="h4" className={classes.title}>
               {movie.genre.name}
+            </Typography>
+            <Typography variant="body2">
+              <LikeButton movie_id={movie.id} likeDislike={true} />
+              {movie.num_of_likes}
+              <LikeButton movie_id={movie.id} likeDislike={false} />
+              {movie.num_of_dislikes}
             </Typography>
             <Grid className={classes.grid}>
               <Grid item className={classes.gridItem}>

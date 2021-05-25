@@ -6,7 +6,7 @@ import { getItem, setItem, removeItem } from "../utils/localStorage";
 
 const ROUTES = {
   LOGIN: "/api/v1/token/",
-  ME: "/auth/me",
+  ME: "api/v1/users/me",
   LOGOUT: "/auth/logout",
   FORGOT_PASSWORD: "/user/forgot-password",
   REGISTER: "/api/v1/users/",
