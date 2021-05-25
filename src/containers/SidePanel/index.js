@@ -39,10 +39,9 @@ const SidePanel = () => {
   const [t, i18n] = useTranslation("translation");
 
   useEffect(() => {
-    const url = currentMovie
-      ? `${ROUTES.MOVIES}?genre=${currentMovie.genre.id}`
-      : null;
-    const call = url ? dispatch(fetchPageOfMoviesRequest(url)) : null;
+    if (!currentMovie) return;
+    const url = `${ROUTES.MOVIES}?genre=${currentMovie.genre.id}`;
+    dispatch(fetchPageOfMoviesRequest(url));
   }, [currentMovie]);
 
   return (
