@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Header from "../Header/headerDashboard";
+import SidePanel from "../SidePanel";
 
 import { fetchSingleMovie } from "../../store/movies/actions";
 import { makeSelectMovie } from "../../store/movies/selectors";
@@ -16,6 +17,7 @@ import { Avatar } from "@material-ui/core";
 const useStyles = makeStyles({
   box: {
     borderRadius: 3,
+    flex: 2,
   },
   image: {
     width: 200,
@@ -42,29 +44,32 @@ const MoviePage = () => {
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
-  }, []);
+  }, [movie]);
 
   return (
     <div>
       <Header />
-      {movie && (
-        <Box className={classes.box} border={1} m={3}>
-          <Typography variant="h2" className={classes.title}>
-            {movie.title}
-          </Typography>
-          <Typography variant="h4" className={classes.title}>
-            {movie.genre.name}
-          </Typography>
-          <Grid className={classes.grid}>
-            <Grid item className={classes.gridItem}>
-              <Avatar className={classes.image}></Avatar>
+      <Grid className={classes.grid}>
+        {movie && (
+          <Box className={classes.box} border={1} m={3}>
+            <Typography variant="h2" className={classes.title}>
+              {movie.title}
+            </Typography>
+            <Typography variant="h4" className={classes.title}>
+              {movie.genre.name}
+            </Typography>
+            <Grid className={classes.grid}>
+              <Grid item className={classes.gridItem}>
+                <Avatar className={classes.image}></Avatar>
+              </Grid>
+              <Grid item className={classes.gridItem}>
+                <Typography>{movie.description}</Typography>
+              </Grid>
             </Grid>
-            <Grid item className={classes.gridItem}>
-              <Typography>{movie.description}</Typography>
-            </Grid>
-          </Grid>
-        </Box>
-      )}
+          </Box>
+        )}
+        <SidePanel />
+      </Grid>
     </div>
   );
 };

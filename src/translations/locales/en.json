@@ -27,5 +27,8 @@
         "logoutBtn":"Logout",
         "filterBtn":"Filter",
         "searchInput":"Search"
+    },
+    "singleMovie":{
+        "relatedMoviesTitle":"Related Movies By Genre"
     }
 }
