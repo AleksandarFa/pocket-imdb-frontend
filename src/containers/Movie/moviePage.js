@@ -47,7 +47,7 @@ const MoviePage = () => {
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
     dispatch(fetchAuthenticatedUser());
-  }, []);
+  }, [id]);
 
   return (
     <div>

@@ -8,27 +8,21 @@ import { IconButton } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 
-const Button = ({ likeDislike, movie_id }) => {
+const LikeButton = ({ likeDislike, movie_id }) => {
   const dispatch = useDispatch();
   const user = useSelector(makeSelectUser());
   const like = user ? { liked: null, movie: movie_id, user: user.id } : null;
-  const [clicked, setClicked] = useState(false);
 
   const handleLike = (e, value) => {
-    like.liked = e.currentTarget.value ? true : false;
+    like.liked = !!e.currentTarget.value;
     dispatch(postLikeRequest(like));
-    setClicked(true);
   };
 
   return (
-    <IconButton
-      onClick={handleLike}
-      value={likeDislike ? true : null}
-      disabled={clicked}
-    >
+    <IconButton onClick={handleLike} value={likeDislike ? true : null}>
       {likeDislike ? <ThumbUpAltIcon /> : <ThumbDownAltIcon />}
     </IconButton>
   );
 };
 
-export default Button;
+export default LikeButton;
