@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Header from "../Header/headerDashboard";
 import SidePanel from "../SidePanel";
 import LikeButton from "../../components/likeButton";
+import ViewCount from "../../components/viewCount";
 
 import { fetchSingleMovie } from "../../store/movies/actions";
 import { fetchAuthenticatedUser } from "../../store/auth/actions";
@@ -66,6 +67,7 @@ const MoviePage = () => {
               {movie.num_of_likes}
               <LikeButton movie_id={movie.id} likeDislike={false} />
               {movie.num_of_dislikes}
+              <ViewCount viewsNumber={movie.num_of_views} />
             </Typography>
             <Grid className={classes.grid}>
               <Grid item className={classes.gridItem}>
