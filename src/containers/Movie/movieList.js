@@ -39,6 +39,7 @@ const MovieList = () => {
               description={movie.description}
               likes={movie.num_of_likes}
               dislikes={movie.num_of_dislikes}
+              views={movie.num_of_views}
             />
           );
         })}

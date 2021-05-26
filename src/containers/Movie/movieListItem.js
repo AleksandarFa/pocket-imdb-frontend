@@ -3,6 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 import { MOVIE } from "../../routes";
 import LikeButton from "../../components/likeButton";
+import ViewCount from "../../components/viewCount";
 
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
   },
 });
 
-const MovieItem = ({ id, title, description, likes, dislikes }) => {
+const MovieItem = ({ id, title, description, likes, dislikes, views }) => {
   const classes = useStyles();
   const route = MOVIE.replace(":id", id);
 
@@ -60,7 +61,12 @@ const MovieItem = ({ id, title, description, likes, dislikes }) => {
         </Box>
         <ListItemText
           className={classes.text}
-          primary={title}
+          primary={
+            <React.Fragment>
+              {title}
+              <ViewCount viewsNumber={views} />
+            </React.Fragment>
+          }
           secondary={
             <React.Fragment>{description.slice(0, 300)}...</React.Fragment>
           }
