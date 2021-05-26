@@ -11,6 +11,8 @@ import {
   POST_LIKE_MOVIE_REQUEST,
   POST_LIKE_MOVIE_SUCCESS,
   POST_LIKE_MOVIE_ERROR,
+  FETCH_POPULAR_MOVIES_REQUEST,
+  FETCH_POPULAR_MOVIES_SUCCESS,
 } from "./actionTypes";
 
 export function fetchMovies() {
@@ -93,5 +95,19 @@ export function postLikeError(err) {
   return {
     type: POST_LIKE_MOVIE_ERROR,
     err,
+  };
+}
+
+export function fetchPopularMoviesRequest(url) {
+  return {
+    type: FETCH_POPULAR_MOVIES_REQUEST,
+    url,
+  };
+}
+
+export function fetchPopularMoviesSuccess(popular) {
+  return {
+    type: FETCH_POPULAR_MOVIES_SUCCESS,
+    popular,
   };
 }

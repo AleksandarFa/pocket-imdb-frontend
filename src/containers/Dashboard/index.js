@@ -8,6 +8,7 @@ import MovieList from "../Movie/movieList";
 import Pagination from "../Pagination/";
 import GenreFilter from "../GenreFilter";
 import SearchBox from "../SearchBox";
+import PopularMovies from "../SidePanel/popularMovies";
 
 const useStyles = makeStyles({
   box1: {
@@ -18,6 +19,11 @@ const useStyles = makeStyles({
   },
   box2: {
     display: "flex",
+    alignItems: "flex-start",
+  },
+  box3: {
+    display: "flex",
+    flex: 3,
     flexDirection: "column",
     alignItems: "center",
   },
@@ -34,8 +40,11 @@ const Dashboard = () => {
         <SearchBox />
       </Box>
       <Box className={classes.box2}>
-        <MovieList />
-        <Pagination />
+        <Box className={classes.box3}>
+          <MovieList />
+          <Pagination />
+        </Box>
+        <PopularMovies />
       </Box>
     </div>
   );

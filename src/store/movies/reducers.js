@@ -6,6 +6,7 @@ import {
   SET_NEXT_PAGE,
   SET_PREVIOUS_PAGE,
   POST_LIKE_MOVIE_SUCCESS,
+  FETCH_POPULAR_MOVIES_SUCCESS,
 } from "./actionTypes";
 
 export const initialState = {
@@ -14,6 +15,7 @@ export const initialState = {
   next: null,
   previous: null,
   genres: null,
+  popular: null,
 };
 
 function movieReducer(state = initialState, actions) {
@@ -54,6 +56,11 @@ function movieReducer(state = initialState, actions) {
         ...state,
         movies: changeMovies,
         movie: changeMovies.changedMovie,
+      };
+    case FETCH_POPULAR_MOVIES_SUCCESS:
+      return {
+        ...state,
+        popular: actions.popular,
       };
     default:
       return state;

@@ -8,11 +8,13 @@ import {
   FETCH_SINGLE_MOVIE_REQUEST,
   FETCH_GENRES_REQUEST,
   POST_LIKE_MOVIE_REQUEST,
+  FETCH_POPULAR_MOVIES_REQUEST,
 } from "./actionTypes";
 import {
   fetchMoviesSuccess,
   fetchSingleMovieSuccess,
   fetchGenresSuccess,
+  fetchPopularMoviesSuccess,
   postLikeSuccess,
   postLikeError,
   setNext,
@@ -51,12 +53,18 @@ export function* postLike({ like }) {
   }
 }
 
+export function* fetchPopularMovies(url) {
+  const response = yield call(movieService.fetchPage, url);
+  yield put(fetchPopularMoviesSuccess(response));
+}
+
 function* movieSagas() {
   yield takeLatest(FETCH_ALL_MOVIES_REQUEST, fetchAllMovies);
   yield takeLatest(FETCH_SINGLE_MOVIE_REQUEST, fetchSingleMovie);
   yield takeLatest(FETCH_PAGE_OF_MOVIES_REQUEST, fetchPageOfMovies);
   yield takeLatest(FETCH_GENRES_REQUEST, fetchGenres);
   yield takeLatest(POST_LIKE_MOVIE_REQUEST, postLike);
+  yield takeLatest(FETCH_POPULAR_MOVIES_REQUEST, fetchPopularMovies);
 }
 
 export default movieSagas;
