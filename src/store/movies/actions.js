@@ -8,6 +8,9 @@ import {
   FETCH_GENRES_SUCCESS,
   SET_NEXT_PAGE,
   SET_PREVIOUS_PAGE,
+  POST_LIKE_MOVIE_REQUEST,
+  POST_LIKE_MOVIE_SUCCESS,
+  POST_LIKE_MOVIE_ERROR,
 } from "./actionTypes";
 
 export function fetchMovies() {
@@ -69,5 +72,26 @@ export function fetchGenresSuccess(genres) {
   return {
     type: FETCH_GENRES_SUCCESS,
     genres,
+  };
+}
+
+export function postLikeRequest(like) {
+  return {
+    type: POST_LIKE_MOVIE_REQUEST,
+    like,
+  };
+}
+
+export function postLikeSuccess(like) {
+  return {
+    type: POST_LIKE_MOVIE_SUCCESS,
+    like,
+  };
+}
+
+export function postLikeError(err) {
+  return {
+    type: POST_LIKE_MOVIE_ERROR,
+    err,
   };
 }

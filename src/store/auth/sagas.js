@@ -77,7 +77,7 @@ export function* logout() {
 export function* fetchUser() {
   try {
     const user = yield call(authService.fetchAuthenticatedUser);
-    yield put(fetchAuthenticatedUserSuccess(user));
+    yield put(fetchAuthenticatedUserSuccess(user.data));
   } catch (error) {
     console.log(error);
   }

@@ -7,6 +7,7 @@ import {
   LOGIN_ERROR,
   SET_TOKEN,
   SESSION_EXPIRED,
+  FETCH_AUTHENTICATED_USER_SUCCESS,
 } from "./actionTypes";
 
 export const initialState = {
@@ -47,6 +48,11 @@ const appReducer = (state = initialState, actions) => {
       return {
         ...state,
         error: actions.error,
+      };
+    case FETCH_AUTHENTICATED_USER_SUCCESS:
+      return {
+        ...state,
+        user: actions.user,
       };
     default:
       return state;

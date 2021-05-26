@@ -6,6 +6,7 @@ import { getItem, setItem } from "../utils/localStorage";
 export const ROUTES = {
   MOVIES: "api/v1/movies/",
   GENRES: "api/v1/genres/",
+  LIKES: "api/v1/likes/",
 };
 
 class MovieService {
@@ -49,6 +50,16 @@ class MovieService {
     const response = await this.httpService.request({
       url: url,
       method: HTTP_METHODS.GET,
+    });
+    return response.data;
+  };
+
+  setLike = async (like) => {
+    this.setAuthToken(getItem("token"));
+    const response = await this.httpService.request({
+      url: ROUTES.LIKES,
+      method: HTTP_METHODS.POST,
+      data: like,
     });
     return response.data;
   };

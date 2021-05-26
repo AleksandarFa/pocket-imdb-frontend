@@ -1,9 +1,11 @@
+import changeLikes from "../../utils/changeLikes";
 import {
   FETCH_ALL_MOVIES_SUCCESS,
   FETCH_SINGLE_MOVIE_SUCCESS,
   FETCH_GENRES_SUCCESS,
   SET_NEXT_PAGE,
   SET_PREVIOUS_PAGE,
+  POST_LIKE_MOVIE_SUCCESS,
 } from "./actionTypes";
 
 export const initialState = {
@@ -40,6 +42,18 @@ function movieReducer(state = initialState, actions) {
       return {
         ...state,
         genres: actions.genres,
+      };
+
+    case POST_LIKE_MOVIE_SUCCESS:
+      let changeMovies = changeLikes(
+        state.movies.results,
+        actions.like.movie,
+        actions.like.liked
+      );
+      return {
+        ...state,
+        movies: changeMovies,
+        movie: changeMovies.changedMovie,
       };
     default:
       return state;
