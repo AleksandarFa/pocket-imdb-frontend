@@ -7,6 +7,7 @@ export const ROUTES = {
   MOVIES: "api/v1/movies/",
   GENRES: "api/v1/genres/",
   LIKES: "api/v1/likes/",
+  POPULAR: "api/v1/movies/popular/",
 };
 
 class MovieService {

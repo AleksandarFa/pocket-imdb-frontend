@@ -26,7 +26,8 @@
         "title":"Pocket IMDB",
         "logoutBtn":"Logout",
         "filterBtn":"Filter",
-        "searchInput":"Search"
+        "searchInput":"Search",
+        "popularMovies":"Popular movies"
     },
     "singleMovie":{
         "relatedMoviesTitle":"Related Movies By Genre"
