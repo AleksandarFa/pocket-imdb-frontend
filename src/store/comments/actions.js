@@ -4,12 +4,14 @@ import {
   POST_MOVIE_COMMENT_REQUEST,
   POST_MOVIE_COMMENT_SUCCESS,
   POST_MOVIE_COMMENT_ERROR,
+  FETCH_MOVIE_COMMENT_PAGE_SUCCESS,
 } from "../../store/comments/actionTypes";
 
-export function fetchMovieCommentsRequest(endpoint) {
+export function fetchMovieCommentsRequest(endpoint, page) {
   return {
     type: FETCH_MOVIE_COMMENTS_REQUEST,
     endpoint,
+    page,
   };
 }
 
@@ -38,5 +40,12 @@ export function postMovieCommentError(err) {
   return {
     type: POST_MOVIE_COMMENT_ERROR,
     err,
+  };
+}
+
+export function fetchMovieCommentPageSuccess(data) {
+  return {
+    type: FETCH_MOVIE_COMMENT_PAGE_SUCCESS,
+    data,
   };
 }

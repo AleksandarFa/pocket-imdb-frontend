@@ -22,8 +22,9 @@ class CommentService {
     }
   };
 
-  fetchMovieComments = async (url) => {
-    const endpoint = `${ROUTES.COMMENTS}${url}`;
+  fetchMovieComments = async (url, page) => {
+    const endpoint = !page ? `${ROUTES.COMMENTS}${url}` : url;
+
     this.setAuthToken(getItem("token"));
     const response = await this.httpService.request({
       url: endpoint,

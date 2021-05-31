@@ -9,11 +9,16 @@ import PostComment from "./commentForm";
 
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   root: {
     borderRadius: 3,
+  },
+  showMoreBtn: {
+    width: "25%",
+    margin: 24,
   },
 });
 
@@ -25,8 +30,12 @@ const CommentSection = ({ movieId, user }) => {
 
   useEffect(() => {
     const endpoint = `?movie=${movieId.id}`;
-    dispatch(fetchMovieCommentsRequest(endpoint));
+    dispatch(fetchMovieCommentsRequest(endpoint, false));
   }, [movieId]);
+
+  const handleShowMore = () => {
+    comments.next && dispatch(fetchMovieCommentsRequest(comments.next, true));
+  };
 
   return (
     <Box m={3} p={2} border={1} className={classes.root}>
@@ -40,6 +49,16 @@ const CommentSection = ({ movieId, user }) => {
             date={comment.date}
           />
         ))}
+      {comments && comments.next && (
+        <Button
+          variant="outlined"
+          color="primary"
+          className={classes.showMoreBtn}
+          onClick={handleShowMore}
+        >
+          {t("commentSection.showMoreBtn")}
+        </Button>
+      )}
     </Box>
   );
 };
