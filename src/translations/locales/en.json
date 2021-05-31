@@ -40,5 +40,11 @@
         "removeBtn":"Remove",
         "labelOne":"Watched",
         "labelTwo":"You still haven't watched this title."
+    },
+    "commentSection":{
+        "title":"Comment Section",
+        "placeholder":"Write comment here..",
+        "label":"Comment",
+        "submitBtn":"Submit"
     }
 }

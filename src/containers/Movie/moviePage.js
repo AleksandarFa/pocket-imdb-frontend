@@ -10,6 +10,7 @@ import { Avatar } from "@material-ui/core";
 
 import Header from "../Header/headerDashboard";
 import SidePanel from "../SidePanel";
+import CommentSection from "../Comments";
 import LikeButton from "../../components/likeButton";
 import ViewCount from "../../components/viewCount";
 import WatchListHandler from "../../components/watchListHandler";
@@ -99,6 +100,7 @@ const MoviePage = () => {
         )}
         <SidePanel />
       </Grid>
+      <CommentSection movieId={id} user={user} />
     </div>
   );
 };
