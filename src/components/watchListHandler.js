@@ -8,6 +8,30 @@ import Button from "@material-ui/core/Button";
 import findWatched from "../utils/findWatched";
 import userExist from "../utils/userExist";
 
+const RenderNotWatched = ({ movieWatchList, userId, handleAddMovie }) => {
+  const [t, i18n] = useTranslation("translation");
+  return (
+    <>
+      {userExist(movieWatchList, userId) ? (
+        <Chip
+          variant="outlined"
+          color="secondary"
+          label={t("dashboard.inWatchList")}
+        />
+      ) : (
+        <Button
+          variant="outlined"
+          color="primary"
+          startIcon={<AddBoxIcon />}
+          onClick={handleAddMovie}
+        >
+          {t("dashboard.watchListBtn")}
+        </Button>
+      )}
+    </>
+  );
+};
+
 const WatchListHandler = ({
   userWatchList,
   userId,
@@ -24,21 +48,12 @@ const WatchListHandler = ({
           color="secondary"
           label={t("dashboard.watched")}
         />
-      ) : userExist(movieWatchList, userId) ? (
-        <Chip
-          variant="outlined"
-          color="secondary"
-          label={t("dashboard.inWatchList")}
-        />
       ) : (
-        <Button
-          variant="outlined"
-          color="primary"
-          startIcon={<AddBoxIcon />}
-          onClick={handleAddMovie}
-        >
-          {t("dashboard.watchListBtn")}
-        </Button>
+        <RenderNotWatched
+          movieWatchList={movieWatchList}
+          userId={userId}
+          handleAddMovie={handleAddMovie}
+        />
       )}
     </>
   );
