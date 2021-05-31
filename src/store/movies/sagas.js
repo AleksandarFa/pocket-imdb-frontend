@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from "@redux-saga/core/effects";
 
-import movieService from "../../services/movieService";
+import movieService, { ROUTES } from "../../services/movieService";
+import { HTTP_METHODS } from "../../consts";
 
 import {
   FETCH_ALL_MOVIES_REQUEST,
@@ -9,12 +10,20 @@ import {
   FETCH_GENRES_REQUEST,
   POST_LIKE_MOVIE_REQUEST,
   FETCH_POPULAR_MOVIES_REQUEST,
+  FETCH_WATCH_LIST_REQUEST,
+  ADD_WATCH_LIST_ITEM_REQUEST,
+  UPDATE_WATCH_LIST_ITEM_REQUEST,
+  REMOVE_WATCH_LIST_ITEM,
 } from "./actionTypes";
 import {
   fetchMoviesSuccess,
   fetchSingleMovieSuccess,
   fetchGenresSuccess,
   fetchPopularMoviesSuccess,
+  fetchWatchListSuccess,
+  addToWatchListSuccess,
+  updateWatchedSuccess,
+  delteWatchListItemSuccess,
   postLikeSuccess,
   postLikeError,
   setNext,
@@ -58,6 +67,59 @@ export function* fetchPopularMovies(url) {
   yield put(fetchPopularMoviesSuccess(response));
 }
 
+export function* fetchWatchList(url) {
+  const response = yield call(movieService.fetchPage, url);
+  yield put(fetchWatchListSuccess(response));
+}
+
+export function* addWatchListItem({ movie }) {
+  const url = ROUTES.WATCHLIST;
+  const method = HTTP_METHODS.POST;
+  try {
+    const response = yield call(
+      movieService.watchListManipulation,
+      url,
+      method,
+      movie
+    );
+    yield put(addToWatchListSuccess(movie));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export function* updateWatched({ data }) {
+  const url = ROUTES.WATCHLIST;
+  const method = HTTP_METHODS.PUT;
+  try {
+    const response = yield call(
+      movieService.watchListManipulation,
+      url,
+      method,
+      data
+    );
+    yield put(updateWatchedSuccess(data));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export function* deleteWatchListItem({ data }) {
+  const url = ROUTES.WATCHLIST;
+  const method = HTTP_METHODS.DELETE;
+  try {
+    const response = yield call(
+      movieService.watchListManipulation,
+      url,
+      method,
+      data
+    );
+    yield put(delteWatchListItemSuccess(data.movie.id));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function* movieSagas() {
   yield takeLatest(FETCH_ALL_MOVIES_REQUEST, fetchAllMovies);
   yield takeLatest(FETCH_SINGLE_MOVIE_REQUEST, fetchSingleMovie);
@@ -65,6 +127,10 @@ function* movieSagas() {
   yield takeLatest(FETCH_GENRES_REQUEST, fetchGenres);
   yield takeLatest(POST_LIKE_MOVIE_REQUEST, postLike);
   yield takeLatest(FETCH_POPULAR_MOVIES_REQUEST, fetchPopularMovies);
+  yield takeLatest(FETCH_WATCH_LIST_REQUEST, fetchWatchList);
+  yield takeLatest(ADD_WATCH_LIST_ITEM_REQUEST, addWatchListItem);
+  yield takeLatest(UPDATE_WATCH_LIST_ITEM_REQUEST, updateWatched);
+  yield takeLatest(REMOVE_WATCH_LIST_ITEM, deleteWatchListItem);
 }
 
 export default movieSagas;

@@ -21,11 +21,15 @@ const makeSelectGenre = () =>
 const makeSelectPopular = () =>
   createSelector(selectMovies, (substate) => substate.popular);
 
+const makeSelectWatchList = () =>
+  createSelector(selectMovies, (substate) => substate.watchList);
+
 export {
   makeSelectAllMovies,
   makeSelectMovie,
   makeSelectNextMovie,
   makeSelectPreviousMovie,
+  makeSelectWatchList,
   makeSelectPopular,
   makeSelectGenre,
 };

@@ -1,8 +1,10 @@
 import React from "react";
-
+import { Link as RouterLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+
 import { logout } from "../../store/auth/actions";
+import { WATCHLIST } from "../../routes";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -29,6 +31,9 @@ const DashboardHeader = () => {
           <Typography variant="h4" className={classes.title}>
             {t("dashboard.title")}
           </Typography>
+          <Button to={WATCHLIST} component={RouterLink} color="inherit">
+            {t("dashboard.watchListBtn")}
+          </Button>
           <Button color="inherit" onClick={() => dispatch(logout())}>
             {t("dashboard.logoutBtn")}
           </Button>

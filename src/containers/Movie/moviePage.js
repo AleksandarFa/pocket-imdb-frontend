@@ -6,16 +6,19 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import { Avatar } from "@material-ui/core";
 
 import Header from "../Header/headerDashboard";
 import SidePanel from "../SidePanel";
 import LikeButton from "../../components/likeButton";
 import ViewCount from "../../components/viewCount";
+import WatchListHandler from "../../components/watchListHandler";
 
 import { fetchSingleMovie } from "../../store/movies/actions";
 import { fetchAuthenticatedUser } from "../../store/auth/actions";
+import { addToWatchListRequest } from "../../store/movies/actions";
 import { makeSelectMovie } from "../../store/movies/selectors";
-import { Avatar } from "@material-ui/core";
+import { makeSelectUser } from "../../store/auth/selectors";
 
 const useStyles = makeStyles({
   box: {
@@ -42,6 +45,7 @@ const useStyles = makeStyles({
 const MoviePage = () => {
   const id = useParams();
   const movie = useSelector(makeSelectMovie());
+  const user = useSelector(makeSelectUser());
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -49,6 +53,11 @@ const MoviePage = () => {
     dispatch(fetchSingleMovie(id));
     dispatch(fetchAuthenticatedUser());
   }, [id]);
+
+  const handleAddMovie = () => {
+    const data = { movie: movie, user: user.id, watched: false };
+    dispatch(addToWatchListRequest(data));
+  };
 
   return (
     <div>
@@ -68,6 +77,15 @@ const MoviePage = () => {
               <LikeButton movie_id={movie.id} likeDislike={false} />
               {movie.num_of_dislikes}
               <ViewCount viewsNumber={movie.num_of_views} />
+              {user && (
+                <WatchListHandler
+                  userWatchList={user.watchlist_set}
+                  userId={user.id}
+                  movieId={movie.id}
+                  movieWatchList={movie.watch_list}
+                  handleAddMovie={handleAddMovie}
+                />
+              )}
             </Typography>
             <Grid className={classes.grid}>
               <Grid item className={classes.gridItem}>

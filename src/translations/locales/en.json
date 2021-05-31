@@ -27,9 +27,18 @@
         "logoutBtn":"Logout",
         "filterBtn":"Filter",
         "searchInput":"Search",
-        "popularMovies":"Popular movies"
+        "popularMovies":"Popular movies",
+        "watchListBtn":"Watch List",
+        "inWatchList":"In watch list.",
+        "watched":"You've watched this title."
     },
     "singleMovie":{
         "relatedMoviesTitle":"Related Movies By Genre"
+    },
+    "watchList":{
+        "watchedBtn":"Mark Watched",
+        "removeBtn":"Remove",
+        "labelOne":"Watched",
+        "labelTwo":"You still haven't watched this title."
     }
 }

@@ -6,7 +6,10 @@ import { Link as RouterLink } from "react-router-dom";
 import { ROUTES } from "../../services/movieService";
 import { MOVIE } from "../../routes";
 import { makeSelectPopular } from "../../store/movies/selectors";
-import { fetchPopularMoviesRequest } from "../../store/movies/actions";
+import {
+  fetchPopularMoviesRequest,
+  fetchWatchListRequest,
+} from "../../store/movies/actions";
 
 import {
   Box,
@@ -38,6 +41,7 @@ const PopularMovies = () => {
   useEffect(() => {
     const url = ROUTES.POPULAR;
     dispatch(fetchPopularMoviesRequest(url));
+    dispatch(fetchWatchListRequest(ROUTES.WATCHLIST));
   }, []);
 
   return (
