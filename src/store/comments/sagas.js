@@ -15,21 +15,15 @@ import {
 } from "./actions";
 
 export function* fetchMovieComments({ endpoint, page }) {
-  if (!page) {
-    const response = yield call(
-      commentService.fetchMovieComments,
-      endpoint,
-      page
-    );
-    yield put(fetchMovieCommentsSuccess(response));
-  } else {
-    const response = yield call(
-      commentService.fetchMovieComments,
-      endpoint,
-      page
-    );
-    yield put(fetchMovieCommentPageSuccess(response));
-  }
+  const response = yield call(
+    commentService.fetchMovieComments,
+    endpoint,
+    page
+  );
+
+  !page
+    ? yield put(fetchMovieCommentsSuccess(response))
+    : yield put(fetchMovieCommentPageSuccess(response));
 }
 
 export function* postMovieComment({ data }) {
