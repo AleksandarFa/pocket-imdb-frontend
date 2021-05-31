@@ -45,6 +45,7 @@
         "title":"Comment Section",
         "placeholder":"Write comment here..",
         "label":"Comment",
-        "submitBtn":"Submit"
+        "submitBtn":"Submit",
+        "showMoreBtn":"Show More"
     }
 }

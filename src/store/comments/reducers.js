@@ -1,6 +1,7 @@
 import {
   FETCH_MOVIE_COMMENTS_SUCCESS,
   POST_MOVIE_COMMENT_SUCCESS,
+  FETCH_MOVIE_COMMENT_PAGE_SUCCESS,
 } from "./actionTypes";
 
 export const initialState = {
@@ -19,6 +20,14 @@ function commentReducer(state = initialState, actions) {
       return {
         ...state,
         comments: comments,
+      };
+    case FETCH_MOVIE_COMMENT_PAGE_SUCCESS:
+      return {
+        ...state,
+        comments: {
+          results: [...state.comments.results, ...actions.data.results],
+          next: actions.data.next,
+        },
       };
     default:
       return state;

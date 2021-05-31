@@ -11,11 +11,25 @@ import {
   fetchMovieCommentsSuccess,
   postMovieCommentSuccess,
   postMovieCommentError,
+  fetchMovieCommentPageSuccess,
 } from "./actions";
 
-export function* fetchMovieComments({ endpoint }) {
-  const response = yield call(commentService.fetchMovieComments, endpoint);
-  yield put(fetchMovieCommentsSuccess(response));
+export function* fetchMovieComments({ endpoint, page }) {
+  if (!page) {
+    const response = yield call(
+      commentService.fetchMovieComments,
+      endpoint,
+      page
+    );
+    yield put(fetchMovieCommentsSuccess(response));
+  } else {
+    const response = yield call(
+      commentService.fetchMovieComments,
+      endpoint,
+      page
+    );
+    yield put(fetchMovieCommentPageSuccess(response));
+  }
 }
 
 export function* postMovieComment({ data }) {
