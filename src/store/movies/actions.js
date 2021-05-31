@@ -13,6 +13,14 @@ import {
   POST_LIKE_MOVIE_ERROR,
   FETCH_POPULAR_MOVIES_REQUEST,
   FETCH_POPULAR_MOVIES_SUCCESS,
+  FETCH_WATCH_LIST_REQUEST,
+  FETCH_WATCH_LIST_SUCCESS,
+  ADD_WATCH_LIST_ITEM_REQUEST,
+  ADD_WATCH_LIST_ITEM_SUCCESS,
+  UPDATE_WATCH_LIST_ITEM_REQUEST,
+  UPDATE_WATCH_LIST_ITEM_SUCCESS,
+  REMOVE_WATCH_LIST_ITEM,
+  REMOVE_WATCH_LIST_ITEM_SUCCESS,
 } from "./actionTypes";
 
 export function fetchMovies() {
@@ -109,5 +117,62 @@ export function fetchPopularMoviesSuccess(popular) {
   return {
     type: FETCH_POPULAR_MOVIES_SUCCESS,
     popular,
+  };
+}
+
+export function fetchWatchListRequest(url) {
+  return {
+    type: FETCH_WATCH_LIST_REQUEST,
+    url,
+  };
+}
+
+export function fetchWatchListSuccess(watchList) {
+  return {
+    type: FETCH_WATCH_LIST_SUCCESS,
+    watchList,
+  };
+}
+
+export function addToWatchListRequest(movie) {
+  return {
+    type: ADD_WATCH_LIST_ITEM_REQUEST,
+    movie,
+  };
+}
+
+export function addToWatchListSuccess(movie) {
+  return {
+    type: ADD_WATCH_LIST_ITEM_SUCCESS,
+    movie,
+  };
+}
+
+export function updateWatchedRequest(data) {
+  return {
+    type: UPDATE_WATCH_LIST_ITEM_REQUEST,
+    data,
+  };
+}
+
+export function updateWatchedSuccess(data) {
+  console.log(data);
+  return {
+    type: UPDATE_WATCH_LIST_ITEM_SUCCESS,
+    data,
+  };
+}
+
+export function deleteWatchListItem(data) {
+  return {
+    type: REMOVE_WATCH_LIST_ITEM,
+    data,
+  };
+}
+
+export function delteWatchListItemSuccess(movieId) {
+  return {
+    type: REMOVE_WATCH_LIST_ITEM_SUCCESS,
+    movieId,
   };
 }

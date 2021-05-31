@@ -20,7 +20,7 @@ const ViewCount = ({ viewsNumber }) => {
   return (
     <Box className={classes.root}>
       <VisibilityIcon />
-      <p className={classes.text}>{viewsNumber}</p>
+      &nbsp;&nbsp;{viewsNumber}
     </Box>
   );
 };

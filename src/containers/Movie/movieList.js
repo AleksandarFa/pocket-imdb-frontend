@@ -31,17 +31,7 @@ const MovieList = () => {
       {movies &&
         movies.results &&
         movies.results.map((movie) => {
-          return (
-            <MovieItem
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              description={movie.description}
-              likes={movie.num_of_likes}
-              dislikes={movie.num_of_dislikes}
-              views={movie.num_of_views}
-            />
-          );
+          return <MovieItem key={movie.id} movie={movie} />;
         })}
     </List>
   );

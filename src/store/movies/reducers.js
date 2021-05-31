@@ -1,4 +1,7 @@
 import changeLikes from "../../utils/changeLikes";
+import changeWatched from "../../utils/changeWatched";
+import changeWatchList from "../../utils/changeWatchList";
+
 import {
   FETCH_ALL_MOVIES_SUCCESS,
   FETCH_SINGLE_MOVIE_SUCCESS,
@@ -7,6 +10,10 @@ import {
   SET_PREVIOUS_PAGE,
   POST_LIKE_MOVIE_SUCCESS,
   FETCH_POPULAR_MOVIES_SUCCESS,
+  FETCH_WATCH_LIST_SUCCESS,
+  ADD_WATCH_LIST_ITEM_SUCCESS,
+  UPDATE_WATCH_LIST_ITEM_SUCCESS,
+  REMOVE_WATCH_LIST_ITEM_SUCCESS,
 } from "./actionTypes";
 
 export const initialState = {
@@ -16,6 +23,7 @@ export const initialState = {
   previous: null,
   genres: null,
   popular: null,
+  watchList: null,
 };
 
 function movieReducer(state = initialState, actions) {
@@ -61,6 +69,38 @@ function movieReducer(state = initialState, actions) {
       return {
         ...state,
         popular: actions.popular,
+      };
+    case FETCH_WATCH_LIST_SUCCESS:
+      return {
+        ...state,
+        watchList: actions.watchList,
+      };
+    case ADD_WATCH_LIST_ITEM_SUCCESS:
+      const changedMovies = changeWatched(
+        state.movies.results,
+        actions.movie.movie.id,
+        actions.movie.user
+      );
+      return {
+        ...state,
+        movies: changedMovies,
+        movie: changedMovies.changedMovie,
+      };
+    case UPDATE_WATCH_LIST_ITEM_SUCCESS:
+      const changedWatchList = changeWatchList(
+        state.watchList,
+        actions.data.movie.id
+      );
+      return {
+        ...state,
+        watchList: [...changedWatchList],
+      };
+    case REMOVE_WATCH_LIST_ITEM_SUCCESS:
+      return {
+        ...state,
+        watchList: state.watchList.filter(
+          (movie) => movie.movie.id !== actions.movieId
+        ),
       };
     default:
       return state;

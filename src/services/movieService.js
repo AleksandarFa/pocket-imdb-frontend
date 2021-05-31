@@ -8,6 +8,7 @@ export const ROUTES = {
   GENRES: "api/v1/genres/",
   LIKES: "api/v1/likes/",
   POPULAR: "api/v1/movies/popular/",
+  WATCHLIST: "api/v1/movies/watch_list/",
 };
 
 class MovieService {
@@ -47,7 +48,6 @@ class MovieService {
 
   fetchPage = async ({ url }) => {
     this.setAuthToken(getItem("token"));
-
     const response = await this.httpService.request({
       url: url,
       method: HTTP_METHODS.GET,
@@ -61,6 +61,16 @@ class MovieService {
       url: ROUTES.LIKES,
       method: HTTP_METHODS.POST,
       data: like,
+    });
+    return response.data;
+  };
+
+  watchListManipulation = async (url, method, data) => {
+    this.setAuthToken(getItem("token"));
+    const response = await this.httpService.request({
+      url,
+      method,
+      data,
     });
     return response.data;
   };
