@@ -30,7 +30,8 @@
         "popularMovies":"Popular movies",
         "watchListBtn":"Watch List",
         "inWatchList":"In watch list.",
-        "watched":"You've watched this title."
+        "watched":"You've watched this title.",
+        "createMovieBtn":"Create movie"
     },
     "singleMovie":{
         "relatedMoviesTitle":"Related Movies By Genre"
@@ -47,5 +48,13 @@
         "label":"Comment",
         "submitBtn":"Submit",
         "showMoreBtn":"Show More"
+    },
+    "createMovie":{
+        "titlePage":"Create Movies Here",
+        "titleForm":"Title",
+        "submitBtn":"Submit",
+        "genreForm":"Genre",
+        "description":"Description",
+        "descPlaceholder":"Write description here.."
     }
 }

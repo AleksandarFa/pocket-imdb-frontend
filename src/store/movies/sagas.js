@@ -14,6 +14,7 @@ import {
   ADD_WATCH_LIST_ITEM_REQUEST,
   UPDATE_WATCH_LIST_ITEM_REQUEST,
   REMOVE_WATCH_LIST_ITEM,
+  CREATE_MOVIE_REQUEST,
 } from "./actionTypes";
 import {
   fetchMoviesSuccess,
@@ -24,6 +25,8 @@ import {
   addToWatchListSuccess,
   updateWatchedSuccess,
   delteWatchListItemSuccess,
+  createMovieSuccess,
+  createMovieError,
   postLikeSuccess,
   postLikeError,
   setNext,
@@ -120,6 +123,15 @@ export function* deleteWatchListItem({ data }) {
   }
 }
 
+export function* createMovie({ data }) {
+  try {
+    const response = yield call(movieService.createMovie, data);
+    yield put(createMovieSuccess());
+  } catch (err) {
+    yield put(createMovieError(err));
+  }
+}
+
 function* movieSagas() {
   yield takeLatest(FETCH_ALL_MOVIES_REQUEST, fetchAllMovies);
   yield takeLatest(FETCH_SINGLE_MOVIE_REQUEST, fetchSingleMovie);
@@ -131,6 +143,7 @@ function* movieSagas() {
   yield takeLatest(ADD_WATCH_LIST_ITEM_REQUEST, addWatchListItem);
   yield takeLatest(UPDATE_WATCH_LIST_ITEM_REQUEST, updateWatched);
   yield takeLatest(REMOVE_WATCH_LIST_ITEM, deleteWatchListItem);
+  yield takeLatest(CREATE_MOVIE_REQUEST, createMovie);
 }
 
 export default movieSagas;

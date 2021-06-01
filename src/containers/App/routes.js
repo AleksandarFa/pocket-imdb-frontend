@@ -9,6 +9,7 @@ import WelcomePage from "../WelcomePage";
 import Dashboard from "../Dashboard";
 import MoviePage from "../Movie/moviePage";
 import WatchListPage from "../WatchListPage";
+import CreateMoviePage from "../CreateMoviePage";
 
 import {
   LOGIN,
@@ -17,6 +18,7 @@ import {
   DASHBOARD,
   MOVIE,
   WATCHLIST,
+  CREATEMOVIE,
 } from "../../routes";
 
 export default function Routers() {
@@ -27,6 +29,7 @@ export default function Routers() {
       <PrivateRoute path={MOVIE} component={MoviePage} />
       <PrivateRoute path={DASHBOARD} component={Dashboard} />
       <PrivateRoute path={WATCHLIST} component={WatchListPage} />
+      <PrivateRoute path={CREATEMOVIE} component={CreateMoviePage} />
       <PublicRoute path={WELCOME} component={WelcomePage} />
     </Switch>
   );

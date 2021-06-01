@@ -9,6 +9,7 @@ export const ROUTES = {
   LIKES: "api/v1/likes/",
   POPULAR: "api/v1/movies/popular/",
   WATCHLIST: "api/v1/movies/watch_list/",
+  CREATEMOVIE: "api/v1/movies/create_movie/",
 };
 
 class MovieService {
@@ -70,6 +71,16 @@ class MovieService {
     const response = await this.httpService.request({
       url,
       method,
+      data,
+    });
+    return response.data;
+  };
+
+  createMovie = async (data) => {
+    this.setAuthToken(getItem("token"));
+    const response = await this.httpService.request({
+      url: ROUTES.CREATEMOVIE,
+      method: HTTP_METHODS.POST,
       data,
     });
     return response.data;

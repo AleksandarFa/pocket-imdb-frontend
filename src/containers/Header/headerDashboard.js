@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { logout } from "../../store/auth/actions";
-import { WATCHLIST } from "../../routes";
+import { WATCHLIST, CREATEMOVIE } from "../../routes";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -31,6 +31,9 @@ const DashboardHeader = () => {
           <Typography variant="h4" className={classes.title}>
             {t("dashboard.title")}
           </Typography>
+          <Button to={CREATEMOVIE} component={RouterLink} color="inherit">
+            {t("dashboard.createMovieBtn")}
+          </Button>
           <Button to={WATCHLIST} component={RouterLink} color="inherit">
             {t("dashboard.watchListBtn")}
           </Button>

@@ -21,6 +21,9 @@ import {
   UPDATE_WATCH_LIST_ITEM_SUCCESS,
   REMOVE_WATCH_LIST_ITEM,
   REMOVE_WATCH_LIST_ITEM_SUCCESS,
+  CREATE_MOVIE_REQUEST,
+  CREATE_MOVIE_SUCCESS,
+  CREATE_MOVIE_ERROR,
 } from "./actionTypes";
 
 export function fetchMovies() {
@@ -174,5 +177,25 @@ export function delteWatchListItemSuccess(movieId) {
   return {
     type: REMOVE_WATCH_LIST_ITEM_SUCCESS,
     movieId,
+  };
+}
+
+export function createMovieRequest(data) {
+  return {
+    type: CREATE_MOVIE_REQUEST,
+    data,
+  };
+}
+
+export function createMovieSuccess() {
+  return {
+    type: CREATE_MOVIE_SUCCESS,
+  };
+}
+
+export function createMovieError(err) {
+  return {
+    type: CREATE_MOVIE_ERROR,
+    err,
   };
 }
