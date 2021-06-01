@@ -4,3 +4,7 @@ export const USERNAME_MIN = 4;
 export const PASSWORD_MIN = 8;
 export const INPUT_MAX = 255;
 export const COMMENT_MAX = 500;
+export const MOVIE_TITLE_MIN = 2;
+export const MOVIE_TITLE_MAX = 100;
+export const MOVIE_DESCRIPTION_MIN = 5;
+export const MOVIE_DESCRIPTION_MAX = 500;
