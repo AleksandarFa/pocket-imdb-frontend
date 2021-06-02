@@ -55,6 +55,8 @@
         "submitBtn":"Submit",
         "genreForm":"Genre",
         "description":"Description",
-        "descPlaceholder":"Write description here.."
+        "descPlaceholder":"Write description here..",
+        "titlePage2":"Or create by title.",
+        "createMovieSuccess":"Movie was successfully created."
     }
 }

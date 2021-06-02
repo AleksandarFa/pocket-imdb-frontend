@@ -2,6 +2,7 @@ import HttpService from "./HttpService";
 import { HTTP_METHODS } from "../consts";
 
 import { getItem, setItem } from "../utils/localStorage";
+import config from "../config";
 
 export const ROUTES = {
   MOVIES: "api/v1/movies/",
@@ -83,6 +84,18 @@ class MovieService {
       method: HTTP_METHODS.POST,
       data,
     });
+    return response.data;
+  };
+
+  fetchFromOMDB = async (data) => {
+    this.httpService.removeHeader("Authorization");
+    this.httpService.toggleBaseURL();
+    const url = `?t=${data["title"]}&apiKey=${config.apiOMDB.apiKey}`;
+    const response = await this.httpService.request({
+      url: url,
+      method: HTTP_METHODS.GET,
+    });
+    this.httpService.toggleBaseURL();
     return response.data;
   };
 }

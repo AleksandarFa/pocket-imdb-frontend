@@ -15,6 +15,7 @@ import {
   UPDATE_WATCH_LIST_ITEM_REQUEST,
   REMOVE_WATCH_LIST_ITEM,
   CREATE_MOVIE_REQUEST,
+  FETCH_MOVIE_OMDB_REQUEST,
 } from "./actionTypes";
 import {
   fetchMoviesSuccess,
@@ -28,6 +29,7 @@ import {
   createMovieSuccess,
   createMovieError,
   postLikeSuccess,
+  fetchMovieOMDBSuccess,
   postLikeError,
   setNext,
   setPrevious,
@@ -132,6 +134,21 @@ export function* createMovie({ data }) {
   }
 }
 
+export function* fetchFromOMDB({ data }) {
+  try {
+    const response = yield call(movieService.fetchFromOMDB, data);
+    const genre = response.Genre.split(", ")[0];
+    const data2 = {
+      title: response.Title,
+      description: response.Plot,
+      genre: genre,
+    };
+    yield put(fetchMovieOMDBSuccess(data2));
+  } catch (err) {
+    yield put(createMovieError(err));
+  }
+}
+
 function* movieSagas() {
   yield takeLatest(FETCH_ALL_MOVIES_REQUEST, fetchAllMovies);
   yield takeLatest(FETCH_SINGLE_MOVIE_REQUEST, fetchSingleMovie);
@@ -144,6 +161,7 @@ function* movieSagas() {
   yield takeLatest(UPDATE_WATCH_LIST_ITEM_REQUEST, updateWatched);
   yield takeLatest(REMOVE_WATCH_LIST_ITEM, deleteWatchListItem);
   yield takeLatest(CREATE_MOVIE_REQUEST, createMovie);
+  yield takeLatest(FETCH_MOVIE_OMDB_REQUEST, fetchFromOMDB);
 }
 
 export default movieSagas;

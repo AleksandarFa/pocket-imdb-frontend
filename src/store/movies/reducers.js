@@ -14,6 +14,7 @@ import {
   ADD_WATCH_LIST_ITEM_SUCCESS,
   UPDATE_WATCH_LIST_ITEM_SUCCESS,
   REMOVE_WATCH_LIST_ITEM_SUCCESS,
+  FETCH_MOVIE_OMDB_SUCCESS,
 } from "./actionTypes";
 
 export const initialState = {
@@ -101,6 +102,12 @@ function movieReducer(state = initialState, actions) {
         watchList: state.watchList.filter(
           (movie) => movie.movie.id !== actions.movieId
         ),
+      };
+    case FETCH_MOVIE_OMDB_SUCCESS:
+      console.log(actions.data);
+      return {
+        ...state,
+        movie: actions.data,
       };
     default:
       return state;

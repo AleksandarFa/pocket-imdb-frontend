@@ -78,7 +78,7 @@ const MovieItem = ({ movie }) => {
             primary={
               <React.Fragment>
                 {movie.title}
-                <ViewCount viewsNumber={movie.views} />
+                <ViewCount viewsNumber={movie.num_of_views} />
                 <WatchListHandler
                   userWatchList={user.watchlist_set}
                   userId={user.id}

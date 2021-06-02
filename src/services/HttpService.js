@@ -16,6 +16,17 @@ class HttpClient {
   attachHeaders = (headers) => {
     Object.assign(this.client.defaults.headers.common, headers);
   };
+
+  toggleBaseURL = () => {
+    this.client.defaults.baseURL =
+      this.client.defaults.baseURL != config.apiOMDB.baseURL
+        ? config.apiOMDB.baseURL
+        : config.api.baseURL;
+  };
+
+  removeHeader = (header) => {
+    delete this.client.defaults.headers.common[header];
+  };
 }
 
 class HttpService {
@@ -29,6 +40,14 @@ class HttpService {
 
   attachHeaders = (headers) => {
     this.httpClient.attachHeaders(headers);
+  };
+
+  toggleBaseURL = () => {
+    this.httpClient.toggleBaseURL();
+  };
+
+  removeHeader = (header) => {
+    this.httpClient.removeHeader(header);
   };
 }
 

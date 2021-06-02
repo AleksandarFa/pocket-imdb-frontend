@@ -24,6 +24,8 @@ import {
   CREATE_MOVIE_REQUEST,
   CREATE_MOVIE_SUCCESS,
   CREATE_MOVIE_ERROR,
+  FETCH_MOVIE_OMDB_REQUEST,
+  FETCH_MOVIE_OMDB_SUCCESS,
 } from "./actionTypes";
 
 export function fetchMovies() {
@@ -197,5 +199,19 @@ export function createMovieError(err) {
   return {
     type: CREATE_MOVIE_ERROR,
     err,
+  };
+}
+
+export function fetchMovieOMDBRequest(data) {
+  return {
+    type: FETCH_MOVIE_OMDB_REQUEST,
+    data,
+  };
+}
+
+export function fetchMovieOMDBSuccess(data) {
+  return {
+    type: FETCH_MOVIE_OMDB_SUCCESS,
+    data,
   };
 }
