@@ -161,7 +161,6 @@ export function updateWatchedRequest(data) {
 }
 
 export function updateWatchedSuccess(data) {
-  console.log(data);
   return {
     type: UPDATE_WATCH_LIST_ITEM_SUCCESS,
     data,
