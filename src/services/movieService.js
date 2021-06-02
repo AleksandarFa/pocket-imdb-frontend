@@ -11,6 +11,7 @@ export const ROUTES = {
   POPULAR: "api/v1/movies/popular/",
   WATCHLIST: "api/v1/movies/watch_list/",
   CREATEMOVIE: "api/v1/movies/create_movie/",
+  IMAGEUPLOAD: "api/v1/files/",
 };
 
 class MovieService {
@@ -96,6 +97,16 @@ class MovieService {
       method: HTTP_METHODS.GET,
     });
     this.httpService.toggleBaseURL();
+    return response.data;
+  };
+
+  postMovieImage = async (data) => {
+    this.setAuthToken(getItem("token"));
+    const response = await this.httpService.request({
+      url: ROUTES.IMAGEUPLOAD,
+      method: HTTP_METHODS.POST,
+      data,
+    });
     return response.data;
   };
 }

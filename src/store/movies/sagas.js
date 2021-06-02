@@ -16,6 +16,7 @@ import {
   REMOVE_WATCH_LIST_ITEM,
   CREATE_MOVIE_REQUEST,
   FETCH_MOVIE_OMDB_REQUEST,
+  POST_MOVIE_IMAGE_REQUEST,
 } from "./actionTypes";
 import {
   fetchMoviesSuccess,
@@ -30,6 +31,7 @@ import {
   createMovieError,
   postLikeSuccess,
   fetchMovieOMDBSuccess,
+  postMovieImageSuccess,
   postLikeError,
   setNext,
   setPrevious,
@@ -126,8 +128,14 @@ export function* deleteWatchListItem({ data }) {
 }
 
 export function* createMovie({ data }) {
+  const formData = new FormData();
+  formData.append("file", data.file);
   try {
-    const response = yield call(movieService.createMovie, data);
+    const response = yield call(movieService.postMovieImage, formData);
+    const response2 = yield call(movieService.createMovie, {
+      ...data,
+      cover_image: response.id,
+    });
     yield put(createMovieSuccess());
   } catch (err) {
     yield put(createMovieError(err));
@@ -149,6 +157,17 @@ export function* fetchFromOMDB({ data }) {
   }
 }
 
+export function* postMovieImage({ data }) {
+  const formData = new FormData();
+  formData.append("file", data);
+  try {
+    const response = yield call(movieService.postMovieImage, formData);
+    yield put(postMovieImageSuccess());
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function* movieSagas() {
   yield takeLatest(FETCH_ALL_MOVIES_REQUEST, fetchAllMovies);
   yield takeLatest(FETCH_SINGLE_MOVIE_REQUEST, fetchSingleMovie);
@@ -162,6 +181,7 @@ function* movieSagas() {
   yield takeLatest(REMOVE_WATCH_LIST_ITEM, deleteWatchListItem);
   yield takeLatest(CREATE_MOVIE_REQUEST, createMovie);
   yield takeLatest(FETCH_MOVIE_OMDB_REQUEST, fetchFromOMDB);
+  yield takeLatest(POST_MOVIE_IMAGE_REQUEST, postMovieImage);
 }
 
 export default movieSagas;

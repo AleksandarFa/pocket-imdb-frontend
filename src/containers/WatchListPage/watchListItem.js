@@ -31,11 +31,13 @@ const WatchListItem = ({ movie, watched }) => {
   const [t, i18n] = useTranslation("translation");
 
   const handleWatched = () => {
+    delete movie.cover_image;
     const data = { movie: movie, user: user.id, watched: true };
     dispatch(updateWatchedRequest(data));
   };
 
   const handleDelete = () => {
+    delete movie.cover_image;
     const data = { movie: movie, user: user.id };
     dispatch(deleteWatchListItem(data));
   };

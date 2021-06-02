@@ -26,6 +26,8 @@ import {
   CREATE_MOVIE_ERROR,
   FETCH_MOVIE_OMDB_REQUEST,
   FETCH_MOVIE_OMDB_SUCCESS,
+  POST_MOVIE_IMAGE_REQUEST,
+  POST_MOVIE_IMAGE_SUCCESS,
 } from "./actionTypes";
 
 export function fetchMovies() {
@@ -212,5 +214,18 @@ export function fetchMovieOMDBSuccess(data) {
   return {
     type: FETCH_MOVIE_OMDB_SUCCESS,
     data,
+  };
+}
+
+export function postMovieImageRequest(data) {
+  return {
+    type: POST_MOVIE_IMAGE_REQUEST,
+    data,
+  };
+}
+
+export function postMovieImageSuccess() {
+  return {
+    type: POST_MOVIE_IMAGE_SUCCESS,
   };
 }

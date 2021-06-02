@@ -14,6 +14,7 @@ import CommentSection from "../Comments";
 import LikeButton from "../../components/likeButton";
 import ViewCount from "../../components/viewCount";
 import WatchListHandler from "../../components/watchListHandler";
+import config from "../../config";
 
 import { fetchSingleMovie } from "../../store/movies/actions";
 import { fetchAuthenticatedUser } from "../../store/auth/actions";
@@ -27,8 +28,8 @@ const useStyles = makeStyles({
     flex: 2,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 400,
+    height: 600,
     borderRadius: 3,
   },
   grid: {
@@ -49,6 +50,7 @@ const MoviePage = () => {
   const user = useSelector(makeSelectUser());
   const classes = useStyles();
   const dispatch = useDispatch();
+  const path = config.api.baseURL;
 
   useEffect(() => {
     dispatch(fetchSingleMovie(id));
@@ -56,7 +58,9 @@ const MoviePage = () => {
   }, [id]);
 
   const handleAddMovie = () => {
-    const data = { movie: movie, user: user.id, watched: false };
+    const tempMovieData = { ...movie };
+    delete tempMovieData.cover_image;
+    const data = { movie: tempMovieData, user: user.id, watched: false };
     dispatch(addToWatchListRequest(data));
   };
 
@@ -90,7 +94,12 @@ const MoviePage = () => {
             </Typography>
             <Grid className={classes.grid}>
               <Grid item className={classes.gridItem}>
-                <Avatar className={classes.image}></Avatar>
+                <img
+                  src={`${path.slice(0, path.length - 1)}${
+                    movie.cover_image.file
+                  }`}
+                  className={classes.image}
+                />
               </Grid>
               <Grid item className={classes.gridItem}>
                 <Typography>{movie.description}</Typography>

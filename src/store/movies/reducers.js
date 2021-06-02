@@ -104,7 +104,6 @@ function movieReducer(state = initialState, actions) {
         ),
       };
     case FETCH_MOVIE_OMDB_SUCCESS:
-      console.log(actions.data);
       return {
         ...state,
         movie: actions.data,
