@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { createMovieRequest } from "../../store/movies/actions";
 import { fetchGenresRequest } from "../../store/movies/actions";
+import { postMovieImageRequest } from "../../store/movies/actions";
 import { makeSelectGenre } from "../../store/movies/selectors";
 import { ROUTES } from "../../services/movieService";
 import createMovieSchema from "./validations";
@@ -38,6 +39,7 @@ const CreateForm = () => {
       title: "",
       genre: "1",
       description: "",
+      file: null,
     },
     validationSchema: createMovieSchema,
     onSubmit: (values) => {
@@ -93,7 +95,18 @@ const CreateForm = () => {
           helperText={formik.errors.description}
           className={classes.item}
         />
-
+        <Button variant="contained" component="label">
+          Upload File
+          <input
+            type="file"
+            id="file"
+            name="file"
+            hidden
+            onChange={(event) => {
+              formik.setFieldValue("file", event.currentTarget.files[0]);
+            }}
+          />
+        </Button>
         <Button
           type="submit"
           color="primary"

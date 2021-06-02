@@ -11,7 +11,6 @@ import { makeSelectUser } from "../../store/auth/selectors";
 import { addToWatchListRequest } from "../../store/movies/actions";
 
 import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/LIstItemText";
 import Link from "@material-ui/core/Link";
 import Divider from "@material-ui/core/Divider";
@@ -21,7 +20,6 @@ import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
   box: {
-    backgroundColor: "green",
     width: 100,
     height: 100,
   },
@@ -46,7 +44,9 @@ const MovieItem = ({ movie }) => {
   const [t, i18n] = useTranslation("translation");
 
   const handleAddMovie = () => {
-    const data = { movie: movie, user: user.id, watched: false };
+    const tempMovieData = { ...movie };
+    delete tempMovieData.cover_image;
+    const data = { movie: tempMovieData, user: user.id, watched: false };
     dispatch(addToWatchListRequest(data));
   };
 
@@ -56,9 +56,7 @@ const MovieItem = ({ movie }) => {
         <ListItem alignItems="flex-start">
           <Box>
             <Link component={RouterLink} to={route}>
-              <ListItemAvatar>
-                <Box className={classes.box}>Image</Box>
-              </ListItemAvatar>
+              <img src={movie.cover_image.thumbnail} className={classes.box} />
             </Link>
             <Box>
               <Grid container className={classes.grid}>
