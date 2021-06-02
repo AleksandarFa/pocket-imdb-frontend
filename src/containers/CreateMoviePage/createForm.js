@@ -96,7 +96,7 @@ const CreateForm = () => {
           className={classes.item}
         />
         <Button variant="contained" component="label">
-          Upload File
+          {t("createMovie.uploadBtn")}
           <input
             type="file"
             id="file"

@@ -102,7 +102,6 @@ class MovieService {
 
   postMovieImage = async (data) => {
     this.setAuthToken(getItem("token"));
-    console.log(data);
     const response = await this.httpService.request({
       url: ROUTES.IMAGEUPLOAD,
       method: HTTP_METHODS.POST,

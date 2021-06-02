@@ -162,7 +162,6 @@ export function* postMovieImage({ data }) {
   formData.append("file", data);
   try {
     const response = yield call(movieService.postMovieImage, formData);
-    console.log(response);
     yield put(postMovieImageSuccess());
   } catch (err) {
     console.log(err);
